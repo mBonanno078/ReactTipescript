@@ -22,7 +22,6 @@ export interface infoUser {
     site_admin: boolean;
 }
 
-
 const url: string = 'https://api.github.com/users';
 
 const User = () => {
@@ -56,32 +55,32 @@ const User = () => {
             Users the github
         </h1>
         {checkUser ? (
-            <ul className="users">
-                {Object.values(getUser).map((el) => {     
-                const {avatar_url, login, id,  html_url, created_at} = el;
-                return (
-                    <li className="user-card" key={id}>
-                        <a href={html_url} className="user">
-                            <div className="content-image">
-                                <img className="avatar" src={avatar_url} alt={login} />
-                            </div>
-                            <div className="content-info">
-                                <h4 className="name">
-                                    {login}
-                                </h4>
-                                <p className="subscrive">
-                                    {created_at}
-                                </p>
-                                <p className="drescription">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab doloremque possimus impedit accusamus numquam. Iure fugiat beatae, nam inventore possimus dolor veniam ad ipsam. Facere numquam similique nam autem quas!
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                );
-                })}
+                <ul className="users">
+                    {Object.values(getUser).map((el) => {     
+                    const {avatar_url, login, id,  html_url, created_at} = el;
+                    return (
+                        <li className="user-card" key={id}>
+                            <a href={html_url} className="user">
+                                <div className="content-image">
+                                    <img className="avatar" src={avatar_url} alt={login} />
+                                </div>
+                                <div className="content-info">
+                                    <h4 className="name">
+                                        {login}
+                                    </h4>
+                                    <p className="subscrive">
+                                        {created_at}
+                                    </p>
+                                    <p className="drescription">
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab doloremque possimus impedit accusamus numquam. Iure fugiat beatae, nam inventore possimus dolor veniam ad ipsam. Facere numquam similique nam autem quas!
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    );
+                    })}
 
-            </ul>
+                </ul>
             ) : 
             (
                 <p className="error">
