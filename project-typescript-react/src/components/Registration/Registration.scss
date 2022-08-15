@@ -1,0 +1,126 @@
+.container-registrattion {
+    max-width: 768px;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    border-radius: 20px;
+    margin: 0 auto;
+    position: relative;
+
+    .title-registration {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 700;
+        margin: 0 0 40px;
+    }
+
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+
+        .input {
+            padding: 16px 8px;
+            margin-bottom: 24px;
+            outline: none;
+            border: 0;
+            border-radius: 0;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+            color: #595959;
+            font-size: 16px;
+            font-weight: 500;
+
+            &:active,
+            &:focus {
+                border-bottom: 1px solid rgb(41, 41, 41);
+            }
+        }
+
+        .content-button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+    }
+
+    .btn {
+        border: 0;
+        outline: none;
+        padding: 16px 8px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 400px;
+        background-color: rgb(88, 138, 224);
+        font-family: 'poppins';
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        font-weight: 700;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: rgb(68 110 181);
+        }
+    }
+
+    .success-modal {
+        opacity: 0;
+        position: absolute;
+        width: 80%;
+        height: 200px;
+        border-radius: 20px;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s ease-in;
+
+        &.show {
+            opacity: 1;
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+        .content-button-close {
+            display: flex;
+            justify-content: center;
+
+            .close {
+                max-width: 200px;
+            }
+        }
+
+        .text-succes {
+            font-size: 24px;
+            line-height: 24px;
+            text-align: center;
+            font-weight: 500;
+        }
+    }
+
+    .first-letter {
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+}
