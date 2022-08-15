@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Registration.scss';
 
 const Registration = () => {
@@ -6,24 +6,28 @@ const Registration = () => {
     const [email, setEmail] = useState<string>('');
     const [success, setSuccess] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
-
-
-    useEffect( () => {
-        console.log('name', fullName, 
-                    'email', email)
-
-    }, [fullName, email])
+    const [messageError, setMessageError] = useState<string>('');
 
     const onSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        fullName && email && setSuccess(true);
+        
+        if(fullName && email && password) {
+            setSuccess(!success);
+            setMessageError('');          
+        } else {
+           setSuccess(!success);
+           setMessageError('Fill out all fields!');           
+        }
     }
     
     const closeModal = () => {
         setSuccess(!success);
-        setEmail('');
-        setFullName('');
-        setPassword('');
+        
+       if(!messageError) {
+           setEmail('');
+           setFullName('');
+           setPassword('');
+       }
     }
 
     return(
@@ -71,14 +75,22 @@ const Registration = () => {
                 </div>
             </form>
         </div>
-        {success && 
+        {success &&
               <div className={`success-modal ${success ? 'show' : ''}`}>
-              <h2 className="text-succes first-letter">
-                  <b className='name'>
-                    {fullName}, &nbsp;
-                  </b>
-                  la tua richiesta è stata inviata
-              </h2>
+             {!messageError &&
+                <h2 className="text-succes first-letter">
+                    <b className='name'>
+                        {fullName}, &nbsp;
+                    </b>
+                    la tua richiesta è stata inviata
+                </h2>
+             }
+             {messageError &&
+                <h2 className="text-succes first-letter">
+                    {messageError}
+                </h2>
+             
+             }
               <div className="content-button-close">
                   <button 
                       type="submit" 
