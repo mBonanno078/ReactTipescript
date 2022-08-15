@@ -13,7 +13,7 @@ const Registration = () => {
         
         if(fullName && email && password) {
             setSuccess(!success);
-            setMessageError('');          
+            messageError && setMessageError('');          
         } else {
            setSuccess(!success);
            setMessageError('Fill out all fields!');           
