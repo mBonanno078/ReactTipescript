@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import './Registration.scss';
 
+interface User {
+    fullName: string,
+    email: string,
+    password: string
+}
+
 const Registration = () => {
-    const [fullName, setFullName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
+    const [user, setUser] = useState<User>({
+        fullName: '',
+        email: '',
+        password: ''
+    });
+
     const [success, setSuccess] = useState<boolean>(false);
-    const [password, setPassword] = useState<string>('');
     const [messageError, setMessageError] = useState<string>('');
 
     const onSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         
-        if(fullName && email && password) {
+        if(user.fullName && user.email && user.password) {
             setSuccess(!success);
             messageError && setMessageError('');          
         } else {
@@ -24,10 +33,17 @@ const Registration = () => {
         setSuccess(!success);
         
        if(!messageError) {
-           setEmail('');
-           setFullName('');
-           setPassword('');
+        setUser({
+            fullName: '',
+            email: '',
+            password: ''
+        });
        }
+    }
+
+    const onChangeUser = ( e: React.FormEvent<HTMLInputElement> ) => {
+        const {name, value} = e.currentTarget;
+        setUser({...user, [name]: value });
     }
 
     return(
@@ -43,9 +59,9 @@ const Registration = () => {
                 <input type="text" 
                        className='input full-name' 
                        id='name' 
-                       name='name'
-                       value={fullName}
-                       onChange={(e) => setFullName(e.target.value)}
+                       name='fullName'
+                       value={user.fullName}
+                       onChange={onChangeUser}
                 />
                  <label htmlFor="email" className='label'>
                     email
@@ -54,8 +70,8 @@ const Registration = () => {
                        className='input email' 
                        id='email' 
                        name='email'
-                       value={email}
-                       onChange={(e) => setEmail(e.target.value)}
+                       value={user.email}
+                       onChange={onChangeUser}
                 />
                  <label htmlFor="name" className='label'>
                     password
@@ -65,8 +81,8 @@ const Registration = () => {
                        id='password' 
                        name='password'
                        required
-                       value={password}
-                       onChange={(e) => setPassword(e.target.value)}
+                       value={user.password}
+                       onChange={onChangeUser}
                 />
                 <div className="content-button">
                     <button type="submit" className='btn submit' onClick={onSubmit}>
@@ -80,7 +96,7 @@ const Registration = () => {
              {!messageError &&
                 <h2 className="text-succes first-letter">
                     <b className='name'>
-                        {fullName}, &nbsp;
+                        {user.fullName}, &nbsp;
                     </b>
                     la tua richiesta è stata inviata
                 </h2>
