@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import './Counter.scss';
 
 type Reducer<State, Action> = 
   (state: State, action: Action) => State;
@@ -14,6 +15,7 @@ type Reducer<State, Action> =
   enum ActionKind {
     Increase = 'INCREASE',
     Decrease = 'DECREASE',
+    Reset = 'RESET'
   }
   
   type Action = {
@@ -31,6 +33,10 @@ type Reducer<State, Action> =
     payload: 1
   }
 
+  const resetAction: Action ={
+    type: ActionKind.Reset,
+    payload: 0
+  }
 
   function counterReducer(state: State, action: Action): State {
     const {type, payload} = action;
@@ -45,8 +51,13 @@ type Reducer<State, Action> =
       case ActionKind.Decrease:
         return {
           ...state, 
-          value: state.value - action.payload
+          value: state.value ? state.value - action.payload : 0
         }
+      case ActionKind.Reset:
+        return {
+          ...state,
+          value: initialCounterState.value
+        }  
       default:
         return state;
     }
@@ -57,12 +68,22 @@ const Counter: React.FC = () => {
   const [ state, dispatch ] = useReducer(counterReducer, initialCounterState);
 
   return (
-    <div>
-      Count: {state.value}
-      <button onClick={() => dispatch(decreaseAction)}>
+    <div className="container-counter">
+      <div className="content-title">
+        <h1 className="title">
+          Counter using useReducer
+        </h1>
+      </div>
+      <h2 className="counter">
+        Count : {state.value}
+      </h2>
+      <button className="btn" onClick={() => dispatch(decreaseAction)}>
         -
       </button>
-      <button onClick={() => dispatch(increaseAction)}>
+      <button className="btn" onClick={() => dispatch(resetAction)}>
+        reset
+      </button>
+      <button className="btn" onClick={() => dispatch(increaseAction)}>
         +
       </button>
     </div>
