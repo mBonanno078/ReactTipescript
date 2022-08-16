@@ -33,7 +33,7 @@ type Reducer<State, Action> =
     payload: 1
   }
 
-  const resetAction: Action ={
+  const resetAction: Action = {
     type: ActionKind.Reset,
     payload: 0
   }
