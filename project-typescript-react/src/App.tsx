@@ -1,8 +1,9 @@
 import React from "react";
-import Registration from "./components/Registration/Registration";
-import User from "./components/User/UserFetc";
-import Counter from "./components/useReducer/Counter";
-import Index from "./modal";
+import PostWordpress from "./components/PostWordpress/PostWordpress";
+// import Registration from "./components/Registration/Registration";
+// import User from "./components/User/UserFetc";
+// import Counter from "./components/useReducer/Counter";
+// import Index from "./modal";
 
 const App: React.FC = () => {
   return (
@@ -10,7 +11,8 @@ const App: React.FC = () => {
       {/* <User/> */}
       {/* <Registration/> */}
       {/* <Counter/> */}
-      <Index/>
+      {/* <Index/> */}
+      <PostWordpress/>
     </div>
   );
 }
